@@ -2,11 +2,12 @@
   "name": "backend",
   "version": "1.0.0",
   "main": "index.js",
+  "type": "module",
   "scripts": {
     "start": "nodemon server.js"
   },
   "keywords": [],
-  "author": "",
+  "author": "Chetan Gosavi",
   "license": "ISC",
   "description": "",
   "dependencies": {

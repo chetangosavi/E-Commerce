@@ -1,18 +1,24 @@
 import express from "express";
 import cors from 'cors'
-import dbConnet from "./src/config/dbConnect";
+import dbConnet from "./src/config/dbConnect.js";
 import cookieParser from "cookie-parser";
 import dotenv from 'dotenv'
 dotenv.config()
+
 dbConnet();
 
 const app = express();
 
 app.use(express.json());
-app.use(cors());
+app.use(cors({
+    origin:'http://http://localhost:5173/',
+    methods:['GET','POST','PUT','DELETE'],
+    allowedHeaders:['Content-Type','Authorization','Cache-Control','Expires','Pragma'],
+    credentials:true
+}));
 app.use(cookieParser());
 
-app.use('/api',indexedRoutes);
+// app.use('/api',indexedRoutes);
 
 const PORT = process.env.PORT || 5000;
 
