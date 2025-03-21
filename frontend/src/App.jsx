@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Route, Routes } from "react-router-dom";
 import Login from "./pages/Auth/Login";
 import Register from "./pages/Auth/Register";
@@ -15,14 +15,24 @@ import ClientProductList from "./pages/Client/ClientProductList";
 import ClientCheckout from "./pages/Client/ClientCheckout";
 import ClientAccount from "./pages/Client/ClientAccount";
 import CheckAuth from "./components/common/CheckAuth";
+import { useDispatch, useSelector } from "react-redux";
+import { checkAuth } from "./store/authSlice";
+import { Skeleton } from "@/components/ui/skeleton"
+
 
 const App = () => {
-  const isAuthenticated = false;
-  const user ={
-    name:'chetan',
-    role:'user'
-  };
 
+  const {isAuthenticated,user, isLoading} = useSelector((state)=>state.auth);
+  const dispatch = useDispatch();
+
+  useEffect(()=>{
+    dispatch(checkAuth())
+  },[dispatch])
+
+  if(isLoading){
+    return <Skeleton className="w-[600px] h-[600px] " />
+
+  }
   return (
     <div className="flex flex-col overflow-hidden bg-white">
       <Routes>
@@ -39,9 +49,7 @@ const App = () => {
           <Route
             path="register"
             element={
-              <CheckAuth isAuthenticated={isAuthenticated} user={user}>
                 <Register />
-              </CheckAuth>
             }
           />
         </Route>

@@ -11,14 +11,15 @@ const app = express();
 
 app.use(express.json());
 app.use(cors({
-    origin:'http://http://localhost:5173/',
+    origin:'http://localhost:5173',
     methods:['GET','POST','PUT','DELETE'],
     allowedHeaders:['Content-Type','Authorization','Cache-Control','Expires','Pragma'],
     credentials:true
 }));
 app.use(cookieParser());
 
-// app.use('/api',indexedRoutes);
+import indexRouter from './src/routes/indexed.Routes.js'
+app.use('/api',indexRouter);
 
 const PORT = process.env.PORT || 5000;
 

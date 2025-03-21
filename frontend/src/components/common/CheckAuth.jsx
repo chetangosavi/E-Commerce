@@ -19,9 +19,9 @@ const CheckAuth = ({ isAuthenticated, user, children }) => {
     if (
       isAuthenticated &&
       (location.pathname.includes("/login") ||
-        location.pathname.includes("/register"))
+       location.pathname.includes("/register"))
     ) {
-      if (user?.role === "admin") {
+      if (user?.role==="admin") {
         navigate("/admin/dashboard");
       } else {
         navigate("/client/home");

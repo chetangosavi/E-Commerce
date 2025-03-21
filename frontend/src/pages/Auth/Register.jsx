@@ -1,7 +1,12 @@
+
 import Form from "@/components/common/Form";
 import { registerFormControlls } from "@/config/config";
+import { registerUser } from "@/store/authSlice";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
+import { toast } from "sonner"
+
 
 const initialState = {
   name:'',
@@ -12,10 +17,24 @@ const initialState = {
 const Register = () => {
 
   const [formData, setFormData] = useState(initialState);
-  console.log(formData)
-  
-  function onSubmit (){
+  // console.log(formData)
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
+  function onSubmit(e){
+    e.preventDefault();
+    dispatch(registerUser(formData)).then((data)=> {
+      if(data.payload.success === true){
+        toast(data?.payload?.message)
+        navigate('/auth/login')
+      }
+      else{
+        toast(data?.payload?.message,{
+          variant:'destructive',
+        })
+      }
+    }
+    );
   }
   return (
     <div className="mx-auto w-full max-w-md space-y-6 shadow-2xl p-10 rounded-2xl">
