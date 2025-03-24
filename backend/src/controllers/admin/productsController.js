@@ -149,28 +149,28 @@ const updateProduct = async (req,res)=>{
     }
 
 
-// Fetch Single Product:
-const getSigleProduct = async (req,res)=>{
-    try {
-        
-    } catch (error) {
-        console.log(error)
-        res.status(500).json({
-            success:false,
-            message:"Failed to add product, Some Server error"
-        })
-    }
-    }
-
 // Delete Product:
 const deleteProduct = async (req,res)=>{
     try {
-        
+        const {id} = req.params;
+        const deletedProduct =await Product.findByIdAndDelete(id)
+
+        if(!deletedProduct){
+            return res.status(404).json({
+                message:'Product Not Found!',
+                success:false
+            })
+        }
+
+        return res.status(200).json({
+            message:'Product Deleted Successfully',
+            success:true
+        })
     } catch (error) {
         console.log(error)
         res.status(500).json({
             success:false,
-            message:"Failed to add product, Some Server error"
+            message:"Failed to delete product, Some Server error"
         })
     }
     }
