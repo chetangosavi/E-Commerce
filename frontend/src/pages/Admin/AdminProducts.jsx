@@ -24,6 +24,8 @@ const AdminProducts = () => {
   const [uploadedImageUrl, setUploadedImageUrl] = useState('')
   const [isImageLoading, setIsImageLoading] = useState(false);
 
+
+  console.log(formData,"FormData")
   function onSubmit (e){
     e.preventDefault();
   }
