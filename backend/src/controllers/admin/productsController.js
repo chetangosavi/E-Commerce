@@ -29,7 +29,7 @@ export const hadndleImageUpload = async (req,res)=>{
 
 // Add new Product:
 
-const addProduct = async (req,res)=>{
+export const addProduct = async (req,res)=>{
     try {
         const {image,title,description,category,brand,price,salePrice,totalStock} = req.body;
         
@@ -78,7 +78,7 @@ const addProduct = async (req,res)=>{
 
 // Fetch All Products:
 
-const getAllProducts = async (req, res) => {
+export const getAllProducts = async (req, res) => {
     try {
         const listOfProducts = await Product.find();
 
@@ -109,7 +109,7 @@ const getAllProducts = async (req, res) => {
 
 
 // Update Product:
-const updateProduct = async (req,res)=>{
+export const updateProduct = async (req,res)=>{
     try {
 
         const {id} = req.params;
@@ -150,7 +150,7 @@ const updateProduct = async (req,res)=>{
 
 
 // Delete Product:
-const deleteProduct = async (req,res)=>{
+export const deleteProduct = async (req,res)=>{
     try {
         const {id} = req.params;
         const deletedProduct =await Product.findByIdAndDelete(id)

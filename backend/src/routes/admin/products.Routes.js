@@ -1,10 +1,15 @@
 import express from 'express';
-import { hadndleImageUpload } from '../../controllers/admin/productsController.js';
+import { addProduct, deleteProduct, getAllProducts, hadndleImageUpload, updateProduct } from '../../controllers/admin/productsController.js';
 import { upload } from '../../helpers/cloudinary.js';
 
 const router =express.Router();
 
 router.post('/upload-image',upload.single('my_file'),hadndleImageUpload);
+
+router.post('/add',addProduct);
+router.get('/all/products',getAllProducts);
+router.put('/update',updateProduct);
+router.delete('/delete',deleteProduct);
 
 export default router
 
