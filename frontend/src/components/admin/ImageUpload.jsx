@@ -6,6 +6,7 @@ import { Label } from "../ui/label"
 import { FileIcon, UploadCloudIcon, XIcon } from "lucide-react";
 import { Button } from "../ui/button";
 import axios from "axios";
+import { Skeleton } from "../ui/skeleton";
 
 const ImageUpload = ({imageFile,setImageFile,uploadedImageUrl, setUploadedImageUrl,isImageLoading, setIsImageLoading}) => {
     const inputRef = useRef(null);
@@ -65,6 +66,7 @@ const ImageUpload = ({imageFile,setImageFile,uploadedImageUrl, setUploadedImageU
                    <UploadCloudIcon className="w-10 h-10 text-muted-foreground mb-2"/>
                    <span>Drag & Drop - Click To Upload Image</span>
                 </Label>:
+                isImageLoading?<Skeleton className="h-10 bg-gray-100"/>:
                 <div className="flex items-center justify-between">
                     <div className="flex items-center">
                         <FileIcon className="w-8 h-8 text-primary mr-2"/>

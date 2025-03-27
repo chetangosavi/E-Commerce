@@ -8,7 +8,7 @@ router.post('/upload-image',upload.single('my_file'),hadndleImageUpload);
 
 router.post('/add',addProduct);
 router.get('/all/products',getAllProducts);
-router.put('/updat/:id',updateProduct);
+router.put('/update/:id',updateProduct);
 router.delete('/delete/:id',deleteProduct);
 
 export default router
